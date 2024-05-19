@@ -1,13 +1,9 @@
 version: 2
 
 models:
-  - name: destination_db
-    description: "Raw data from the destination PostgreSQL database."
   - name: films
     description: "This table contains details about films."
     columns:
-      - name: id
-        description: "The primary key for this table"
       - name: film_id
         description: "Unique identifier for the film."
         tests:
@@ -34,14 +30,9 @@ models:
         tests:
           - not_null
 
-
-  - name: actors
-    description: "A starter dbt model"
   - name: actors
     description: "This table contains details about actors."
     columns:
-      - name: id
-        description: "The primary key for this table"
       - name: actor_id
         description: "Unique identifier for the actor."
         tests:
