@@ -13,14 +13,14 @@ The aim of the project is to understand how dbt, Airflow and Airbyte work.
 
 1. **docker-compose.yaml**: This file contains the configuration for Docker Compose, which is used to orchestrate multiple Docker containers. It defines three services:
 
-2. **source_postgres**: The source PostgreSQL database.
-3. **destination_postgres**: The destination PostgreSQL database.
-4. **elt_script**: The service that runs the ELT script.
-5. **elt_script/Dockerfile**: This Dockerfile sets up a Python environment and installs the PostgreSQL client. It also copies the ELT script into the container and sets it as the default command.
+  - **source_postgres**: The source PostgreSQL database.
+  - **destination_postgres**: The destination PostgreSQL database.
+  - **elt_script**: The service that runs the ELT script.
+2. **elt_script/Dockerfile**: This Dockerfile sets up a Python environment and installs the PostgreSQL client. It also copies the ELT script into the container and sets it as the default command.
 
-6. **elt_script/elt_script.py**: This Python script performs the ELT process. It waits for the source PostgreSQL database to become available, then dumps its data to a SQL file and loads this data into the destination PostgreSQL database.
+3. **elt_script/elt_script.py**: This Python script performs the ELT process. It waits for the source PostgreSQL database to become available, then dumps its data to a SQL file and loads this data into the destination PostgreSQL database.
 
-7. **source_db_init/init.sql**: This SQL script initializes the source database with sample data. It creates tables for users, films, film categories, actors, and film actors, and inserts sample data into these tables.
+4. **source_db_init/init.sql**: This SQL script initializes the source database with sample data. It creates tables for users, films, film categories, actors, and film actors, and inserts sample data into these tables.
 
 ## Usage
 
