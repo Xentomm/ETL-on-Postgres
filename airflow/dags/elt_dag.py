@@ -56,4 +56,4 @@ t2 = PythonOperator(
     dag=dag
 )
 
-t1 >> t2
+t1 >> t2 #stream
