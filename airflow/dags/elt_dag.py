@@ -29,3 +29,31 @@ dag = DAG(
     start_date=datetime(2024, 5, 20),
     catchup=False
 )
+
+t1 = PythonOperator(
+    task_id="run_elt_script",
+    python_callable=run_elt_script,
+    dag=dag
+)
+
+t2 = PythonOperator(
+    task_id="dbt_run",
+    image="ghcr.io/dbt-labs/dbt-postgres:1.4.7",
+    command=[
+        "run",
+        "--profiles-dir",
+        "/root",
+        "--profiles-dir",
+        "/dbt"
+    ],
+    auto_remove=True,
+    docker_url="unix://var/run/docker.sock",
+    netowk_mode="bridge",
+    mounts=[
+        Mount(source="/Users/.../elt/custom_postgres", target="/dbt", type="bind"),
+        Mount(source="/Users/.../.dbt", target="/root", type="bind"),
+    ],
+    dag=dag
+)
+
+t1 >> t2
